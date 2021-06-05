@@ -3,10 +3,7 @@ package br.com.zupacademy.ratkovski.proposta.dto;
 import br.com.zupacademy.ratkovski.proposta.config.validation.CPForCNPJ;
 import br.com.zupacademy.ratkovski.proposta.modelo.Proposta;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class PropostaDto {
@@ -21,7 +18,7 @@ public class PropostaDto {
     @NotBlank
     private String address;
     @NotNull
-    @Positive
+    @PositiveOrZero
     private BigDecimal salary;
 
     public PropostaDto(String document,
@@ -39,5 +36,13 @@ public class PropostaDto {
     public Proposta toModel() {
         return new Proposta(document,email,name,address,salary);
     }
+
+
+    public String getDocument() {
+        return document;
+    }
+
+
 }
+
 

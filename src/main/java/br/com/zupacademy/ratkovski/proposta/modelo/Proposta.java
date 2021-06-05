@@ -7,10 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -31,7 +28,7 @@ public class Proposta {
     @NotBlank
     private String address;
     @NotNull
-    @Positive
+    @PositiveOrZero
     private BigDecimal salary;
 
     @Deprecated
@@ -41,7 +38,7 @@ public class Proposta {
                    @NotBlank @Email String email,
                    @NotBlank String name,
                    @NotBlank String address,
-                   @NotNull @Positive BigDecimal salary) {
+                   @NotNull @PositiveOrZero BigDecimal salary) {
 
         this.document = document;
         this.email = email;
@@ -54,4 +51,6 @@ public class Proposta {
     public String getUuid() {
         return uuid;
     }
+
+
 }
