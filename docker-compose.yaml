@@ -34,6 +34,23 @@ services:
       POSTGRES_DB: keycloak
       POSTGRES_HOST: postgres
 
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: proposta
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-volume:/var/lib/mysql
+
+
+
+
   keycloak:
     image: jboss/keycloak
     ports:
@@ -138,3 +155,4 @@ volumes:
   grafana-volume:
   prometheus-volume:
   postgres-volume:
+  mysql-volume:
