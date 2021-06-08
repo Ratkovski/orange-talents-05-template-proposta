@@ -6,11 +6,12 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "ConsultaDadosSolicitante", url = "localhost:9999/api")
+/*"localhost:9999/api"*/
+@FeignClient(name = "ConsultaDadosSolicitante", url = "${api.consultadadossolicitante}")
 public interface ConsultaDadosSolicitante {
 
-
-@RequestMapping(method = RequestMethod.POST,value ="/solicitacao")
+/*value ="/solicitacao"*/
+@RequestMapping(method = RequestMethod.POST,value ="${api.requested}")
 AnaliseDadosResponseDto analisa(AnaliseDadosRequestDto request);
 
 
