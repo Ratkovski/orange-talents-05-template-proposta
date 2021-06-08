@@ -3,11 +3,11 @@ package br.com.zupacademy.ratkovski.proposta.modelo;
 
 import br.com.zupacademy.ratkovski.proposta.config.validation.CPForCNPJ;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -19,38 +19,57 @@ public class Proposta {
     private String uuid = UUID.randomUUID().toString();
     @NotBlank
     @CPForCNPJ
-    private String document;
+    private String documento;
     @NotBlank
     @Email
     private String email;
     @NotBlank
-    private String name;
+    private String nome;
     @NotBlank
-    private String address;
+    private String endereco;
     @NotNull
     @PositiveOrZero
-    private BigDecimal salary;
+    private BigDecimal salario;
+
+    @Enumerated(EnumType.STRING)
+   private StatusProposta status;
 
     @Deprecated
     public Proposta(){}
 
-    public Proposta(String document,
+    public Proposta(String documento,
                    @NotBlank @Email String email,
-                   @NotBlank String name,
-                   @NotBlank String address,
-                   @NotNull @PositiveOrZero BigDecimal salary) {
+                   @NotBlank String nome,
+                   @NotBlank String endereco,
+                   @NotNull @PositiveOrZero BigDecimal salario) {
 
-        this.document = document;
+        this.documento = documento;
         this.email = email;
-        this.name = name;
-        this.address = address;
-        this.salary = salary;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.salario = salario;
 
     }
+
 
     public String getUuid() {
         return uuid;
     }
+
+
+
+    public String getdocumento() {
+        return documento;
+    }
+
+    public String getnome() {
+        return nome;
+    }
+    public void setStatus(StatusProposta status) {
+        this.status = status;
+    }
+
+
 
 
 }

@@ -9,37 +9,37 @@ import java.math.BigDecimal;
 public class PropostaDto {
     @NotBlank
     @CPForCNPJ
-    private String document;
+    private String documento;
     @NotBlank
     @Email
     private String email;
     @NotBlank
-    private String name;
+    private String nome;
     @NotBlank
-    private String address;
+    private String endereco;
     @NotNull
     @PositiveOrZero
-    private BigDecimal salary;
+    private BigDecimal salario;
 
-    public PropostaDto(String document,
+    public PropostaDto(String documento,
                        String email,
-                       String name,
-                       String address,
-                       BigDecimal salary) {
-        this.document = document;
+                       String nome,
+                       String endereco,
+                       BigDecimal salario) {
+        this.documento = documento;
         this.email = email;
-        this.name = name;
-        this.address = address;
-        this.salary = salary;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.salario = salario;
     }
 
     public Proposta toModel() {
-        return new Proposta(document,email,name,address,salary);
+        return new Proposta(documento,email,nome,endereco,salario);
     }
 
 
-    public String getDocument() {
-        return document;
+    public String getdocumento() {
+        return documento;
     }
 
 
