@@ -34,6 +34,9 @@ public class Proposta {
     @Enumerated(EnumType.STRING)
    private StatusProposta status;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Cartao cartao;
+
     @Deprecated
     public Proposta(){}
 
@@ -56,8 +59,6 @@ public class Proposta {
         return uuid;
     }
 
-
-
     public String getdocumento() {
         return documento;
     }
@@ -69,7 +70,13 @@ public class Proposta {
         this.status = status;
     }
 
+    public Cartao getCartao() {
+        return cartao;
+    }
 
+    public void setCartao(Cartao cartao) {
+        this.cartao = cartao;
+    }
 
 
 }
