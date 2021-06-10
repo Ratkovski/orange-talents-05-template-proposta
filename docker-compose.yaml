@@ -50,6 +50,25 @@ services:
 
 
 
+proposta:
+  container_name: proposta
+  build:
+    context: .
+    dockerfile: ./Dockerfile
+    environment:
+    API_PROPOSTA: "http://analise:9999"
+    API_CARTAO: "http://cartao:8888"
+    MYSQL_HOST: mysql
+    MYSQL_USER: root
+    depends_on:
+      - mysql
+      - analise
+      - cartao
+    restart:  aways
+    ports:
+      - 8080:8080
+
+
 
   keycloak:
     image: jboss/keycloak
