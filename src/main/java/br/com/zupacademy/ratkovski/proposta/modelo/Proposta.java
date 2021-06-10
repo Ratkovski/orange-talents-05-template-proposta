@@ -59,15 +59,32 @@ public class Proposta {
         return uuid;
     }
 
-    public String getdocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public String getnome() {
+    public String getEmail() {
+        return email;
+    }
+
+    public String getNome() {
         return nome;
     }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
     public void setStatus(StatusProposta status) {
         this.status = status;
+    }
+
+    public StatusProposta getStatus() {
+        return status;
     }
 
     public Cartao getCartao() {
@@ -77,6 +94,7 @@ public class Proposta {
     public void setCartao(Cartao cartao) {
         this.cartao = cartao;
     }
+
 
 
 }

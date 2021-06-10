@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(name = "AssociaCartao", url = "${api.associacartao}")
 public interface AssociaCartao {
 
+
+
    @RequestMapping(method = RequestMethod.GET, path = "${api.buscacartao}?idProposta={idProposta}")
    CartaoDto associaCartao(@PathVariable("idProposta") String idProposta) ;
 

@@ -15,8 +15,8 @@ public class AnaliseDadosRequestDto {
     private String idProposta;
 
     public AnaliseDadosRequestDto(Proposta proposta) {
-        this.documento = proposta.getdocumento();
-        this.nome = proposta.getnome();
+        this.documento = proposta.getDocumento();
+        this.nome = proposta.getNome();
         this.idProposta = proposta.getUuid();
     }
 
