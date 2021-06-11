@@ -1,0 +1,48 @@
+Manifest-Version: 1.0
+Main-Class: 
+Class-Path: spring-cloud-context-2.2.8.RELEASE.jar feign-hystrix-10.12.j
+ ar txw2-2.3.4.jar error_prone_annotations-2.3.4.jar feign-form-spring-3
+ .8.0.jar spring-cloud-starter-2.2.8.RELEASE.jar HikariCP-3.4.5.jar spri
+ ng-boot-autoconfigure-2.3.11.RELEASE.jar jakarta.xml.bind-api-2.3.3.jar
+  feign-form-3.8.0.jar guava-30.0-jre.jar jakarta.activation-api-1.2.2.j
+ ar jackson-datatype-jsr310-2.11.4.jar tomcat-embed-websocket-9.0.46.jar
+  spring-data-commons-2.3.9.RELEASE.jar spring-boot-starter-web-2.3.11.R
+ ELEASE.jar logback-classic-1.2.3.jar hibernate-validator-6.1.7.Final.ja
+ r spring-boot-starter-2.3.11.RELEASE.jar antlr-2.7.7.jar byte-buddy-1.1
+ 0.22.jar commons-configuration-1.8.jar log4j-to-slf4j-2.13.3.jar jackso
+ n-module-parameter-names-2.11.4.jar listenablefuture-9999.0-empty-to-av
+ oid-conflict-with-guava.jar spring-data-jpa-2.3.9.RELEASE.jar hibernate
+ -core-5.4.31.Final.jar spring-webmvc-5.2.15.RELEASE.jar spring-boot-sta
+ rter-actuator-2.3.11.RELEASE.jar spring-cloud-netflix-archaius-2.2.8.RE
+ LEASE.jar jackson-databind-2.11.4.jar commons-fileupload-1.4.jar spring
+ -tx-5.2.15.RELEASE.jar spring-boot-actuator-autoconfigure-2.3.11.RELEAS
+ E.jar hibernate-commons-annotations-5.1.2.Final.jar archaius-core-0.7.7
+ .jar classmate-1.5.1.jar spring-beans-5.2.15.RELEASE.jar log4j-api-2.13
+ .3.jar spring-boot-starter-data-jpa-2.3.11.RELEASE.jar dom4j-2.1.3.jar 
+ istack-commons-runtime-3.0.12.jar commons-lang-2.6.jar spring-boot-star
+ ter-aop-2.3.11.RELEASE.jar jandex-2.2.3.Final.jar spring-security-rsa-1
+ .0.9.RELEASE.jar logback-core-1.2.3.jar micrometer-core-1.5.14.jar spri
+ ng-boot-devtools-2.3.11.RELEASE.jar spring-aspects-5.2.15.RELEASE.jar h
+ ystrix-core-1.5.18.jar jul-to-slf4j-1.7.30.jar tomcat-embed-core-9.0.46
+ .jar jackson-datatype-jdk8-2.11.4.jar spring-cloud-commons-2.2.8.RELEAS
+ E.jar spring-cloud-starter-openfeign-2.2.8.RELEASE.jar spring-expressio
+ n-5.2.15.RELEASE.jar spring-cloud-openfeign-core-2.2.8.RELEASE.jar bcpr
+ ov-jdk15on-1.64.jar feign-core-10.12.jar spring-core-5.2.15.RELEASE.jar
+  spring-boot-starter-logging-2.3.11.RELEASE.jar javassist-3.27.0-GA.jar
+  aspectjweaver-1.9.6.jar jakarta.persistence-api-2.2.3.jar spring-boot-
+ 2.3.11.RELEASE.jar slf4j-api-1.7.30.jar spring-boot-starter-validation-
+ 2.3.11.RELEASE.jar LatencyUtils-2.0.3.jar spring-web-5.2.15.RELEASE.jar
+  j2objc-annotations-1.3.jar spring-aop-5.2.15.RELEASE.jar jackson-annot
+ ations-2.11.4.jar spring-jdbc-5.2.15.RELEASE.jar jakarta.transaction-ap
+ i-1.3.3.jar jackson-core-2.11.4.jar spring-context-5.2.15.RELEASE.jar b
+ cpkix-jdk15on-1.64.jar spring-security-crypto-5.3.9.RELEASE.jar mysql-c
+ onnector-java-8.0.25.jar spring-boot-actuator-2.3.11.RELEASE.jar HdrHis
+ togram-2.1.12.jar spring-orm-5.2.15.RELEASE.jar commons-io-2.2.jar feig
+ n-slf4j-10.12.jar jakarta.annotation-api-1.3.5.jar spring-boot-starter-
+ jdbc-2.3.11.RELEASE.jar jaxb-runtime-2.3.4.jar jakarta.el-3.0.3.jar spr
+ ing-jcl-5.2.15.RELEASE.jar failureaccess-1.0.1.jar jsr305-3.0.1.jar spr
+ ing-boot-starter-tomcat-2.3.11.RELEASE.jar jboss-logging-3.4.1.Final.ja
+ r spring-boot-starter-json-2.3.11.RELEASE.jar snakeyaml-1.26.jar jakart
+ a.activation-1.2.2.jar checker-qual-3.5.0.jar jakarta.validation-api-2.
+ 0.2.jar spring-cloud-netflix-ribbon-2.2.8.RELEASE.jar rxjava-1.3.8.jar
+
