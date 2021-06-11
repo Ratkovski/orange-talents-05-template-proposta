@@ -42,7 +42,7 @@ services:
       MYSQL_DATABASE: proposta
 
     ports:
-      - 1800:3306
+      - 3306:3306
     volumes:
       - mysql-volume:/var/lib/mysql
 
