@@ -19,7 +19,14 @@ public class IsBase64Validator implements ConstraintValidator<IsBase64, String> 
            /*após decodificado ele codifica denovo*/
            String codificada = Base64.getEncoder().encodeToString(decodificada.getBytes());
             return  value.equals(codificada);
+
+
             //Base64.getDecoder().decode(value.getBytes());
+             //deixa passar
+          //  DatatypeConverter.parseBase64Binary(value);
+
+
+
 
         } catch (Exception e) {
             return false;

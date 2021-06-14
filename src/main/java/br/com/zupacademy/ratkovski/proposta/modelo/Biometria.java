@@ -3,7 +3,7 @@ package br.com.zupacademy.ratkovski.proposta.modelo;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
+/*melhoria mudar para um array*/
 @Entity
 public class Biometria {
     @Id
@@ -11,7 +11,6 @@ public class Biometria {
     private Long id;
     private String uuid = UUID.randomUUID().toString();
     @Lob
-
     private String fingerprint;
     private LocalDateTime associadaEm = LocalDateTime.now();
 

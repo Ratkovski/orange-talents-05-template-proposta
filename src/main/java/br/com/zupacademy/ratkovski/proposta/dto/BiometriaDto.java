@@ -5,7 +5,10 @@ import br.com.zupacademy.ratkovski.proposta.modelo.Biometria;
 import br.com.zupacademy.ratkovski.proposta.modelo.Cartao;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotBlank;
+
 public class BiometriaDto {
+    @NotBlank
     @IsBase64
    @JsonProperty
     private String fingerprint;
