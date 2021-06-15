@@ -23,8 +23,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .antMatchers(HttpMethod.POST, "/propostas/**").hasAuthority("SCOPE_meu-escopo")
                         .anyRequest().authenticated())
 
-
-
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

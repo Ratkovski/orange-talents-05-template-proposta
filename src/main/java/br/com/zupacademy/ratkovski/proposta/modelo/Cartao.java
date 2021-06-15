@@ -1,16 +1,12 @@
 package br.com.zupacademy.ratkovski.proposta.modelo;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class Cartao {
@@ -23,10 +19,9 @@ public class Cartao {
     private LocalDateTime emitidoEm = LocalDateTime.now();
     @NotBlank
     private String titular;
-     /**
-    @OneToMany(mappedBy = "cartao",fetch = FetchType.EAGER)
-    private Set<Bloqueio> bloqueios = new HashSet<Bloqueio>();
 
+
+    /**
     @OneToMany(mappedBy = "cartao",fetch = FetchType.EAGER)
     private Set<Avisos> avisos = new HashSet<Avisos>();
     
@@ -46,10 +41,18 @@ public class Cartao {
      private Set<Vencimento> vencimento = new HashSet<Vencimento>();
            **/
 
+    private int vencimento;
+
+    @Enumerated(EnumType.STRING)
+    private StatusCartao statusCartao = StatusCartao.ATIVO;
+
     @OneToMany(mappedBy = "cartao")
     private List<Biometria> biometrias = new ArrayList<>();
 
-  private int vencimento;
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private List<Bloqueio> bloqueios = new ArrayList<>();
+
+
 
   @Deprecated
   public Cartao(){}
@@ -88,4 +91,24 @@ public class Cartao {
     public int getVencimento() {
         return vencimento;
     }
+
+
+    public boolean bloqueado(){
+        return statusCartao.equals(StatusCartao.BLOQUEADO);
+    }
+
+
+
+public void bloqueio(String ipClient, String userAgent){
+    this.statusCartao = StatusCartao.BLOQUEADO;
+    addBloqueio(new Bloqueio(ipClient,userAgent,this));
+
+}
+
+public void addBloqueio(Bloqueio bloqueio){
+    bloqueios.add(bloqueio);
+
+}
+
+
 }
