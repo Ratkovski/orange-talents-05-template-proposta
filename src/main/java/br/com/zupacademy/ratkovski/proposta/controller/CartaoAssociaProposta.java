@@ -2,7 +2,7 @@ package br.com.zupacademy.ratkovski.proposta.controller;
 
 
 import br.com.zupacademy.ratkovski.proposta.dto.CartaoDto;
-import br.com.zupacademy.ratkovski.proposta.feing.AssociaCartao;
+import br.com.zupacademy.ratkovski.proposta.feing.ApiCartaoFeing;
 import br.com.zupacademy.ratkovski.proposta.modelo.Cartao;
 import br.com.zupacademy.ratkovski.proposta.modelo.Proposta;
 import br.com.zupacademy.ratkovski.proposta.repository.CartaoRepository;
@@ -25,7 +25,7 @@ public class CartaoAssociaProposta {
     @Autowired
     private PropostaRepository propostaRepository;
     @Autowired
-    private  AssociaCartao associaCartao;
+    private ApiCartaoFeing associaCartao;
 
     /*O LoggerFactory é uma classe de utilitário que produz Loggers para várias APIs de log*/
  Logger log = LoggerFactory.getLogger(CartaoAssociaProposta.class);
