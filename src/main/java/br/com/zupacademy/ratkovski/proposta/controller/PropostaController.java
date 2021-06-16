@@ -4,6 +4,7 @@ import br.com.zupacademy.ratkovski.proposta.dto.AnaliseDadosRequestDto;
 import br.com.zupacademy.ratkovski.proposta.dto.AnaliseDadosResponseDto;
 import br.com.zupacademy.ratkovski.proposta.dto.PropostaDto;
 import br.com.zupacademy.ratkovski.proposta.feing.ConsultaDadosSolicitante;
+import br.com.zupacademy.ratkovski.proposta.metricas.MetricasProposta;
 import br.com.zupacademy.ratkovski.proposta.modelo.Proposta;
 import br.com.zupacademy.ratkovski.proposta.modelo.StatusProposta;
 import br.com.zupacademy.ratkovski.proposta.repository.PropostaRepository;
@@ -31,6 +32,9 @@ public class PropostaController {
 
     @Autowired
     private ConsultaDadosSolicitante consultaDadosSolicitante;
+
+    @Autowired
+    private MetricasProposta metricasProposta;
 
     @PostMapping(value = "/propostas")
     @Transactional /*aparentemente com o reposytory não precisa @Transactional mas vou deixar por convenção*/
@@ -69,6 +73,7 @@ public class PropostaController {
 
             if (ex.status() == HttpStatus.UNPROCESSABLE_ENTITY.value() &&
                     responseDto.getResultadoSolicitacao().equals("COM_RESTRICAO")) {
+                metricasProposta.contaPropostaNaoElegivel();
                 proposta.setStatus(StatusProposta.NAO_ELEGIVEL);
 
             }
