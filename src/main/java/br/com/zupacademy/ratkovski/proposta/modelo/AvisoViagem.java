@@ -1,11 +1,7 @@
 package br.com.zupacademy.ratkovski.proposta.modelo;
 
-import org.hibernate.type.LocalDateTimeType;
-
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.FutureOrPresent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,21 +17,30 @@ public class AvisoViagem {
     @ManyToOne
     private Cartao cartao;
     private String destino;
-    @Future
+    @FutureOrPresent
     private LocalDate terminoViagem;
     private LocalDateTime avisadoEm = LocalDateTime.now();
     private String ipCliente;
-    
+    private String userAgent;
 
 
 
 
     @Deprecated
-    public Avisos(){}
+    public AvisoViagem(){}
 
-    public Avisos(LocalDate validoAte, String destino, Cartao cartao) {
-        this.validoAte = validoAte;
-        this.destino = destino;
+    public AvisoViagem(Cartao cartao,
+                       String destino,
+                       LocalDate terminoViagem,
+                       String ipCliente,
+                       String userAgent) {
         this.cartao = cartao;
+        this.destino = destino;
+        this.terminoViagem = terminoViagem;
+        this.ipCliente = ipCliente;
+        this.userAgent = userAgent;
     }
+
+
 }
+

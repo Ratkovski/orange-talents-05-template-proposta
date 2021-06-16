@@ -22,8 +22,6 @@ public class Cartao {
 
 
     /**
-    @OneToMany(mappedBy = "cartao",fetch = FetchType.EAGER)
-    private Set<Avisos> avisos = new HashSet<Avisos>();
     
     @OneToMany(mappedBy = "cartao",fetch = FetchType.EAGER)
     private Set<Carteira> carteiras = new HashSet<Carteira>();
@@ -51,6 +49,11 @@ public class Cartao {
 
     @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
     private List<Bloqueio> bloqueios = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private List<AvisoViagem> avisoViagem = new ArrayList<>();
+
+
 
 
 
@@ -109,6 +112,10 @@ public void addBloqueio(Bloqueio bloqueio){
     bloqueios.add(bloqueio);
 
 }
+    public void addAvisoViagem(AvisoViagem aviso){
+        this.avisoViagem.add(aviso);
+
+    }
 
 
 }
