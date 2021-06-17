@@ -3,11 +3,10 @@ package br.com.zupacademy.ratkovski.proposta.modelo;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
-//@Entity
-/*ainda não esta sendo usada*/
+@Entity
 public class Carteira {
 
     @Id
@@ -16,22 +15,50 @@ public class Carteira {
     private String uuid = UUID.randomUUID().toString();
 
     @Email
+    @NotBlank
     private String email;
-    private LocalDateTime associadaEm;
-    private String emissor;
+
+    @Enumerated(EnumType.STRING)
+    private TipoCarteira carteira;
+
+
+    // private LocalDateTime associadaEm = LocalDateTime.now();
+
 
     @ManyToOne
     private Cartao cartao;
 
 
     @Deprecated
-    public Carteira(){}
+    public Carteira() {
+    }
 
-    public Carteira(String email, LocalDateTime associadaEm, String emissor, Cartao cartao) {
+    public Carteira(String email,
+                    TipoCarteira carteira,
+                    Cartao cartao) {
         this.email = email;
-        this.associadaEm = associadaEm;
-        this.emissor = emissor;
+        this.carteira = carteira;
         this.cartao = cartao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public TipoCarteira getCarteira() {
+        return carteira;
+    }
+
+    public Cartao getCartao() {
+        return cartao;
     }
 }
 

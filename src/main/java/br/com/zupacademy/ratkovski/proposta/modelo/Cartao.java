@@ -53,6 +53,9 @@ public class Cartao {
     @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
     private List<AvisoViagem> avisoViagem = new ArrayList<>();
 
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.MERGE)
+    private List<Carteira> carteiras = new ArrayList<>();
+
 
 
 
@@ -77,6 +80,10 @@ public class Cartao {
 
     public String getId() {
         return id;
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 
     public LocalDateTime getEmitidoEm() {
@@ -114,6 +121,11 @@ public void addBloqueio(Bloqueio bloqueio){
 }
     public void addAvisoViagem(AvisoViagem aviso){
         this.avisoViagem.add(aviso);
+
+    }
+
+    public void addCarteira(Carteira carteira){
+        this.carteiras.add(carteira);
 
     }
 
