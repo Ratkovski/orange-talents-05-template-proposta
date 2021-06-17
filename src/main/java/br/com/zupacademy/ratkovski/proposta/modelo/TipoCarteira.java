@@ -1,5 +1,5 @@
 package br.com.zupacademy.ratkovski.proposta.modelo;
 
 public enum TipoCarteira {
-    PAYPAL
+    PAYPAL,SAMSUNG_PAY
 }

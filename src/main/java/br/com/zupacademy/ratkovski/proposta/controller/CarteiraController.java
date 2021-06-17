@@ -48,7 +48,11 @@ public class CarteiraController {
         }
         Cartao cartao = cartaoExist.get();
         /*preciso melhorar isso*/
-        if (cartaoExist.isPresent() && cartaoExist.equals(TipoCarteira.PAYPAL)) {
+        if (cartaoExist.equals(TipoCarteira.PAYPAL)) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Este cartão já esta associado a está carteira");
+
+        }
+        if (cartaoExist.equals(TipoCarteira.SAMSUNG_PAY)) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Este cartão já esta associado a está carteira");
 
         }
@@ -68,7 +72,7 @@ public class CarteiraController {
             carteiraRepository.save(carteira);
         }catch (FeignException ex){
 
-            System.out.println(ex);
+          //  System.out.println(ex);
             return ResponseEntity.unprocessableEntity().build();
         }
         URI path =  builder.path("/cartoes/{uuid}/carteiras/{id}").build(cartao.getUuid(),carteira.getCartao().getId());
