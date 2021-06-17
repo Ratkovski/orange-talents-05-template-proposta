@@ -1,10 +1,13 @@
 package br.com.zupacademy.ratkovski.proposta.controller;
 
+import br.com.zupacademy.ratkovski.proposta.dto.AvisoViagemFeingRequestDto;
 import br.com.zupacademy.ratkovski.proposta.dto.AvisoViagemRequestDto;
+import br.com.zupacademy.ratkovski.proposta.feing.ApiCartaoFeing;
 import br.com.zupacademy.ratkovski.proposta.modelo.AvisoViagem;
 import br.com.zupacademy.ratkovski.proposta.modelo.Cartao;
 import br.com.zupacademy.ratkovski.proposta.repository.AvisoViagemRepository;
 import br.com.zupacademy.ratkovski.proposta.repository.CartaoRepository;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +28,8 @@ public class AvisoViagemController {
     private AvisoViagemRepository avisoViagemRepository;
     @Autowired
     private CartaoRepository cartaoRepository;
+    @Autowired
+    private ApiCartaoFeing apiCartaoFeing;
 
     @PostMapping("/cartoes/{uuid}/viagem")
     public ResponseEntity<?> cadaviso(@PathVariable("uuid") String uuid,
@@ -51,9 +56,19 @@ public class AvisoViagemController {
        /* String ipCliente = http.getRemoteAddr();
         String userAgent = http.getHeader("User-Agent");*/
         AvisoViagem aviso = request.toModel(ipCliente,userAgent,cartao);
-        cartao.addAvisoViagem(aviso);
-        cartaoRepository.save(cartao);
-        return ResponseEntity.ok().body("Aviso de viagem cadastrado com sucesso!");
+
+        AvisoViagemFeingRequestDto requestFeing = new AvisoViagemFeingRequestDto(aviso.getDestino(),aviso.getTerminoViagem());
+        try{
+            apiCartaoFeing.avisoViagem(cartao.getId(),requestFeing);
+            cartao.addAvisoViagem(aviso);
+            cartaoRepository.save(cartao);
+            return ResponseEntity.ok().body("Aviso de viagem cadastrado com sucesso!");
+        } catch (FeignException ex){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body( "Não foi cadastrar o aviso da viagem");
+
+        }
+
+
 
     }
 }

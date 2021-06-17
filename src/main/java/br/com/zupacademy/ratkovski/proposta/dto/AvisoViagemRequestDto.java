@@ -21,13 +21,16 @@ public class AvisoViagemRequestDto {
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public AvisoViagemRequestDto(String destino) {
+
         this.destino = destino;
     }
 
 
     public void setTerminoViagem(LocalDate terminoViagem) {
+
         this.terminoViagem = terminoViagem;
     }
+
 
     public AvisoViagem toModel(String ipCliente, String userAgent, Cartao cartao) {
         return new AvisoViagem(cartao,destino,terminoViagem,ipCliente,userAgent);

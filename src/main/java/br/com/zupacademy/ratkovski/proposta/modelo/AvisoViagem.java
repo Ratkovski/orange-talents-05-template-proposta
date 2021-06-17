@@ -41,6 +41,12 @@ public class AvisoViagem {
         this.userAgent = userAgent;
     }
 
+    public String getDestino() {
+        return destino;
+    }
 
+    public LocalDate getTerminoViagem() {
+        return terminoViagem;
+    }
 }
 

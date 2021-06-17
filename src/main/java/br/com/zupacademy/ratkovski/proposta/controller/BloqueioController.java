@@ -63,7 +63,7 @@ public class BloqueioController {
             return ResponseEntity.ok().body("Cartão bloqueado com sucesso!");
 
        }catch (FeignException ex){
-            System.out.println(ex.getMessage());
+          //  System.out.println(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body( "Não foi possivel bloquear o cartão");
         }
 

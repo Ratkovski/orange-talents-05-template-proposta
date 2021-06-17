@@ -1,8 +1,6 @@
 package br.com.zupacademy.ratkovski.proposta.feing;
 
-import br.com.zupacademy.ratkovski.proposta.dto.BloqueioCartoaFeingRequestDto;
-import br.com.zupacademy.ratkovski.proposta.dto.BloqueioCartoaFeingResponseDto;
-import br.com.zupacademy.ratkovski.proposta.dto.CartaoDto;
+import br.com.zupacademy.ratkovski.proposta.dto.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,4 +21,9 @@ public interface ApiCartaoFeing {
 
    @RequestMapping(method = RequestMethod.POST, path = "${api.buscacartao}/{id}/bloqueios")
    BloqueioCartoaFeingResponseDto bloqueio(@PathVariable("id") String id, BloqueioCartoaFeingRequestDto request) ;
+
+
+   @RequestMapping(method = RequestMethod.POST, path = "${api.buscacartao}/{id}/avisos")
+   AvisoViagemFeingResponseDto avisoViagem(@PathVariable("id") String id, AvisoViagemFeingRequestDto request) ;
 }
+
