@@ -5,6 +5,8 @@ import br.com.zupacademy.ratkovski.proposta.feing.ApiCartaoFeing;
 import br.com.zupacademy.ratkovski.proposta.modelo.Cartao;
 import br.com.zupacademy.ratkovski.proposta.repository.CartaoRepository;
 import feign.FeignException;
+import io.opentracing.Span;
+import io.opentracing.Tracer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +28,20 @@ public class BloqueioController {
     @Autowired
     private ApiCartaoFeing apiCartaoFeing;
 
+    @Autowired
+    private Tracer tracer;
+
     @PostMapping("/cartoes/{uuid}/bloqueios")
     public ResponseEntity<?> bloquear(@PathVariable String uuid, HttpServletRequest http) {
+
+        Span activeSpan = tracer.activeSpan();
+        String userEmail = activeSpan.getBaggageItem("user.email");
+        activeSpan.setBaggageItem("user.email", userEmail);
+
+
+
+
+
         Optional<Cartao> cartaoExist = cartaoRepository.findByUuid(uuid);
         if (cartaoExist.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Este cartão não existe no sistema");

@@ -5,6 +5,8 @@ import br.com.zupacademy.ratkovski.proposta.modelo.Biometria;
 import br.com.zupacademy.ratkovski.proposta.modelo.Cartao;
 import br.com.zupacademy.ratkovski.proposta.repository.BiometriaRepository;
 import br.com.zupacademy.ratkovski.proposta.repository.CartaoRepository;
+import io.opentracing.Span;
+import io.opentracing.Tracer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,9 +26,21 @@ public class BiometriaController {
     private BiometriaRepository biometriaRepository;
     @Autowired
     private CartaoRepository cartaoRepository;
+    @Autowired
+    private Tracer tracer;
+
 
     @PostMapping("cartao/{uuid}/biometrias")
     public ResponseEntity<?> cadastra(@PathVariable("uuid")String uuid, @RequestBody @Valid BiometriaDto request, UriComponentsBuilder builder){
+
+
+        Span activeSpan = tracer.activeSpan();
+        String userEmail = activeSpan.getBaggageItem("user.email");
+        activeSpan.setBaggageItem("user.email", userEmail);
+
+
+
+
         Optional<Cartao> cartao = cartaoRepository.findByUuid(uuid);
 
         if(cartao.isEmpty()){

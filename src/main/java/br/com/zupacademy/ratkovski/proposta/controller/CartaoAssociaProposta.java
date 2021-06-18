@@ -27,6 +27,7 @@ public class CartaoAssociaProposta {
     @Autowired
     private ApiCartaoFeing associaCartao;
 
+
     /*O LoggerFactory é uma classe de utilitário que produz Loggers para várias APIs de log*/
  Logger log = LoggerFactory.getLogger(CartaoAssociaProposta.class);
 

@@ -8,6 +8,8 @@ import br.com.zupacademy.ratkovski.proposta.modelo.Cartao;
 import br.com.zupacademy.ratkovski.proposta.repository.AvisoViagemRepository;
 import br.com.zupacademy.ratkovski.proposta.repository.CartaoRepository;
 import feign.FeignException;
+import io.opentracing.Span;
+import io.opentracing.Tracer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,12 +32,26 @@ public class AvisoViagemController {
     private CartaoRepository cartaoRepository;
     @Autowired
     private ApiCartaoFeing apiCartaoFeing;
+    @Autowired
+    private Tracer tracer;
 
     @PostMapping("/cartoes/{uuid}/viagem")
     public ResponseEntity<?> cadaviso(@PathVariable("uuid") String uuid,
                                       @RequestBody @Valid AvisoViagemRequestDto request,
                                       HttpServletRequest http) {
-      Cartao cartao = cartaoRepository.findByUuid(uuid)
+
+
+        Span activeSpan = tracer.activeSpan();
+        String userEmail = activeSpan.getBaggageItem("user.email");
+        activeSpan.setBaggageItem("user.email", userEmail);
+        activeSpan.setTag("tag.teste","testando tag");
+        activeSpan.log("testando o log");
+
+
+
+
+
+        Cartao cartao = cartaoRepository.findByUuid(uuid)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Este cartão não existe no sistema"));
 
       if (cartao.bloqueado()) {

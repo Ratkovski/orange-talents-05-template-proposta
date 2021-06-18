@@ -11,6 +11,8 @@ import br.com.zupacademy.ratkovski.proposta.repository.PropostaRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.FeignException;
+import io.opentracing.Span;
+import io.opentracing.Tracer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,10 +38,18 @@ public class PropostaController {
     @Autowired
     private MetricasProposta metricasProposta;
 
+
+    @Autowired
+    private Tracer tracer;
+
     @PostMapping(value = "/propostas")
     @Transactional /*aparentemente com o reposytory não precisa @Transactional mas vou deixar por convenção*/
     ResponseEntity<?> register(@RequestBody @Valid PropostaDto request,
                                UriComponentsBuilder builder) throws JsonProcessingException {
+
+        Span activeSpan = tracer.activeSpan();
+        String userEmail = activeSpan.getBaggageItem("user.email");
+        activeSpan.setBaggageItem("user.email", userEmail);
 
         /* validação para verificar se existe um documento igual no banco antes de salvar*/
         if (propostaRepository.existsByDocumento(request.getdocumento())) {

@@ -11,6 +11,8 @@ import br.com.zupacademy.ratkovski.proposta.modelo.TipoCarteira;
 import br.com.zupacademy.ratkovski.proposta.repository.CartaoRepository;
 import br.com.zupacademy.ratkovski.proposta.repository.CarteiraRepository;
 import feign.FeignException;
+import io.opentracing.Span;
+import io.opentracing.Tracer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,10 +39,21 @@ public class CarteiraController {
     @Autowired
     private ApiCartaoFeing apiCartaoFeing;
 
+    @Autowired
+    private Tracer tracer;
+
 
     @PostMapping("/cartoes/{uuid}/carteiras")
     public ResponseEntity<?> cadcarteira(@PathVariable("uuid") String uuid,
                                          @RequestBody @Valid CarteiraResquestDto request, UriComponentsBuilder builder) {
+
+
+        Span activeSpan = tracer.activeSpan();
+        String userEmail = activeSpan.getBaggageItem("user.email");
+        activeSpan.setBaggageItem("user.email", userEmail);
+
+
+
         Optional<Cartao> cartaoExist = cartaoRepository.findByUuid(uuid);
         if (cartaoExist.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Este cartão não existe no sistema");
