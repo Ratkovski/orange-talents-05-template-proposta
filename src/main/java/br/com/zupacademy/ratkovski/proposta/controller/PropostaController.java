@@ -52,6 +52,7 @@ public class PropostaController {
         activeSpan.setBaggageItem("user.email", userEmail);
 
         /* validação para verificar se existe um documento igual no banco antes de salvar*/
+       // String documentoCripto = Cripto.encrypt(request.getdocumento());
         if (propostaRepository.existsByDocumento(request.getdocumento())) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Já existe uma proposta registrada para o solicitante com este documento:  " + request.getdocumento());
 

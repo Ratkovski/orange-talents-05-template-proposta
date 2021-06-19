@@ -1,7 +1,7 @@
 package br.com.zupacademy.ratkovski.proposta.modelo;
 
 
-import br.com.zupacademy.ratkovski.proposta.config.validation.CPForCNPJ;
+import br.com.zupacademy.ratkovski.proposta.config.security.Cripto;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -18,7 +18,8 @@ public class Proposta {
     private Long id;
     private String uuid = UUID.randomUUID().toString();
     @NotBlank
-    @CPForCNPJ
+  //  @CPForCNPJ
+    @Convert(converter = Cripto.class)
     private String documento;
     @NotBlank
     @Email
